@@ -4,8 +4,12 @@ import ServerList from '../components/ServerList';
 import ChannelList from '../components/ChannelList';
 import ChatWindow from '../components/ChatWindow';
 
-// 🌴 CONNECTED DIRECTLY TO YOUR REAL GLOWCORD BACKEND LIVE STREAM
-const socket = io('https://glowcordd.onrender.com');
+// 🌴 CONNECTED TO GLOWCORD WITH ENCRYPTED WEB TRANSFERS ENABLED
+const socket = io('https://onrender.com', {
+  transports: ['websocket', 'polling'],
+  secure: true,
+  rejectUnauthorized: false
+});
 
 export default function MainDashboard({ user }) {
   const [currentChannel, setCurrentChannel] = useState('general-chat');
